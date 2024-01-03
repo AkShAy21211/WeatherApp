@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form action="/weather" method="get">
+        <input type="text" name="city" placeholder="Enter city name" />
+        <button type="submit">Get Weather</button>
+      </form>
+      <% if (error) { %>
+      <p class="error"><%=error %></p>
+      <% } else if (weather) { %>
+        <div class='box'>
+          <div class='wave -one'></div>
+          <div class='wave -two'></div>
+          <div class='wave -three'></div>
+          <div class="info">
+            <h2 class="location"><%=weather.name  %></h2>
+            <p class="temp" style="font-size: 20px;"><%= ((5/9) * (weather.main.temp - 32)).toFixed(1) %>  &deg;C | <%=weather.main.temp  %> &deg;F</p>
+            <p class="date" style="font-size: 15px;"><i class="fas fa-cloud " style="margin-right: 5px;"></i><%=weather.weather[0].main %></p>
+            <p class="date"  style="font-size: 15px;"><%=new Date().toLocaleString()  %></p>
+            <p class="date"  style="font-size: 15px; margin-right: 5px;"><i style='font-size:24px' class='fas'>&#xf72e;</i> <%=weather.wind.speed %>km/h</p>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
